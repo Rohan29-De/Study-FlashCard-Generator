@@ -1,5 +1,4 @@
 'use server';
-
 import { generateFlashcards } from './groq';
 import { groq } from './groq';
 import { Flashcard, Deck } from '@/types';
@@ -12,16 +11,21 @@ export async function processPdf(formData: FormData): Promise<Deck | null> {
   try {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    
-      // Pattern from user:
-      const { extractText } = await import('unpdf');
-      const { text: pdfText } = await extractText(new Uint8Array(buffer));
-      const data = { text: pdfText };
 
+    // unpdf's extractText returns string[] (one entry per page)
+    // Join all pages into a single string before passing to the AI
+    const { extractText } = await import('unpdf');
+    const { text: pdfPages } = await extractText(new Uint8Array(buffer));
+    const pdfText = Array.isArray(pdfPages)
+      ? pdfPages.join('\n\n')  // ← THE FIX: flatten pages → single string
+      : (pdfPages as string);  // already a string, keep as-is (future-proof)
 
-    
+    if (!pdfText || pdfText.trim().length === 0) {
+      throw new Error('No text could be extracted from this PDF. The file may be scanned/image-based.');
+    }
+
     // Talk to the Teacher AI
-    const kit = await generateFlashcards(data.text);
+    const kit = await generateFlashcards(pdfText);
     if (!kit) return null;
 
     // Helper to find data regardless of AI naming casing
@@ -45,12 +49,11 @@ export async function processPdf(formData: FormData): Promise<Deck | null> {
     }));
 
     // Assemble the complete Deck with ALL materials
-    // Mapping everything including the new Concepts and Definitions
     return {
       id: uuidv4(),
       title: file.name.replace('.pdf', ''),
       description: `Generated from ${file.name}`,
-      summary: kit.summary || kit.Summary || "No summary found.",
+      summary: kit.summary || kit.Summary || 'No summary found.',
       topics: findData(kit, 'topics'),
       concepts: findData(kit, 'concepts'),
       definitions: findData(kit, 'definitions'),
@@ -78,7 +81,6 @@ export async function generateDefinitions(summary: string) {
       response_format: { type: 'json_object' },
     });
     const content = completion.choices[0].message.content;
-    if (!content) return [];
     if (!content) return [];
     const parsed = JSON.parse(content);
     return parsed.definitions || [];
