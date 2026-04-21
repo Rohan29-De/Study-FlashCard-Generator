@@ -1,6 +1,8 @@
 import Groq from 'groq-sdk';
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
+export { groq };
+
 export async function generateFlashcards(text: string) {
   const prompt = `
     Analyze this text and generate a MASSIVE curriculum:

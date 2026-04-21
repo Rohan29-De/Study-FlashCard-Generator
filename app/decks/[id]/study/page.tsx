@@ -115,7 +115,7 @@ export default function StudyPage() {
                       {/* Robust Question Finder */}
                       {(() => {
                         const q = currentList[qIndex];
-                        const text = q.question || q.sentence || q.text || "Question data missing";
+                        const text = (q as any).question || (q as any).sentence || "Question data missing";
                         const answer = q.answer || "";
                         return mode === 'mcq' ? text : `"${text.replace(answer, '_______')}"`;
                       })()}

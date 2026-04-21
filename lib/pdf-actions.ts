@@ -2,13 +2,14 @@
 
 import { PDFParse } from 'pdf-parse';
 import { generateFlashcards } from './groq';
+import { groq } from './groq';
 import { Flashcard, Deck } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
 
 // Fix for worker path in Next.js environment
-const workerPath = path.resolve('node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs');
-PDFParse.setWorker(`file://${workerPath}`);
+// 
+// 
 
 export async function processPdf(formData: FormData): Promise<Deck | null> {
   const file = formData.get('file') as File;
@@ -75,6 +76,8 @@ export async function generateDefinitions(summary: string) {
       response_format: { type: 'json_object' },
     });
     const content = completion.choices[0].message.content;
+    if (!content) return [];
+    if (!content) return [];
     const parsed = JSON.parse(content);
     return parsed.definitions || [];
   } catch (error) {
@@ -92,6 +95,7 @@ export async function generateConcepts(summary: string) {
       response_format: { type: 'json_object' },
     });
     const content = completion.choices[0].message.content;
+    if (!content) return [];
     const parsed = JSON.parse(content);
     return parsed.concepts || [];
   } catch (error) {
