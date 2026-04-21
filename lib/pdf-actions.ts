@@ -14,8 +14,10 @@ export async function processPdf(formData: FormData): Promise<Deck | null> {
     const buffer = Buffer.from(arrayBuffer);
     
       // Pattern from user:
-const pdfParse = require('pdf-parse/dist/pdf-parse');
-const data = await pdfParse(buffer);
+      const { extractText } = await import('unpdf');
+      const { text: pdfText } = await extractText(new Uint8Array(buffer));
+      const data = { text: pdfText };
+
 
     
     // Talk to the Teacher AI
