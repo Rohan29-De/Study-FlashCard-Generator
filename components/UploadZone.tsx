@@ -37,7 +37,9 @@ export function UploadZone({ onSuccess }: UploadZoneProps) {
         setError('Failed to generate flashcards. Please try another PDF.');
       }
     } catch (err) {
-      setError('An error occurred during processing.');
+      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred during processing.';
+      console.error('Upload error details:', err);
+      setError(errorMessage);
     } finally {
       setIsUploading(false);
     }

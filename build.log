@@ -1,0 +1,30 @@
+
+> pdf@0.1.0 build
+> next build
+
+⚠ Invalid next.config.ts options detected: 
+⚠     Unrecognized key(s) in object: 'turbo' at "experimental"
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+▲ Next.js 16.2.4 (Turbopack)
+- Environments: .env.local
+- Experiments (use with caution):
+  · serverActions
+  ? turbo (invalid experimental key)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 8.4s
+  Running TypeScript ...
+Failed to type check.
+
+./app/decks/[id]/study/page.tsx:118:40
+Type error: Property 'question' does not exist on type '{ question: string; options: string[]; answer: string; explanation: string; } | { sentence: string; answer: string; }'.
+  Property 'question' does not exist on type '{ sentence: string; answer: string; }'.
+
+  [90m116 |[0m                       {(() => {
+  [90m117 |[0m                         [36mconst[0m q = currentList[qIndex];
+[31m[1m>[0m [90m118 |[0m                         [36mconst[0m text = q.question || q.sentence || q.text || [32m"Question data...[0m
+  [90m    |[0m                                        [31m[1m^[0m
+  [90m119 |[0m                         [36mconst[0m answer = q.answer || [32m""[0m;
+  [90m120 |[0m                         [36mreturn[0m mode === [32m'mcq'[0m ? text : [32m`"[0m${text.replace(answer, [32m'_______'[0m.[32m..[0m
+  [90m121 |[0m                       })()}
+Next.js build worker exited with code: 1 and signal: null

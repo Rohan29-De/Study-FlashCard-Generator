@@ -1,0 +1,56 @@
+2026-04-21T19:50:00.102551Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-21T19:50:00.103475Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/home/rohan/pdf", pattern: "**/*", negated: false }
+2026-04-21T19:50:00.103895Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-21T19:50:00.104327Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/home/rohan/pdf" }
+2026-04-21T19:50:00.106931Z  INFO discover_sources: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.107516Z  INFO discover_sources:walk_synchronous: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.110028Z  INFO discover_sources:walk_synchronous: tailwindcss_oxide::scanner: exit
+2026-04-21T19:50:00.111898Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/app/layout.tsx"
+2026-04-21T19:50:00.112206Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/AGENTS.md"
+2026-04-21T19:50:00.112236Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/lib/pdf-actions.ts"
+2026-04-21T19:50:00.112652Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/components/ProgressBar.tsx"
+2026-04-21T19:50:00.113517Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/components/Flashcard.tsx"
+2026-04-21T19:50:00.113454Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/app/decks/[id]/study/page.tsx"
+2026-04-21T19:50:00.113848Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/app/page.tsx"
+2026-04-21T19:50:00.113495Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/hooks/useDecks.ts"
+2026-04-21T19:50:00.114108Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/components/UploadZone.tsx"
+2026-04-21T19:50:00.113476Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/CLAUDE.md"
+2026-04-21T19:50:00.114357Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/types/pdf-parse.d.ts"
+2026-04-21T19:50:00.113744Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/components/DeckCard.tsx"
+2026-04-21T19:50:00.114576Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/types/index.ts"
+2026-04-21T19:50:00.114075Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/public/file.svg"
+2026-04-21T19:50:00.114321Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/public/next.svg"
+2026-04-21T19:50:00.114910Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/public/window.svg"
+2026-04-21T19:50:00.114991Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/lib/sm2.ts"
+2026-04-21T19:50:00.115240Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/lib/groq.ts"
+2026-04-21T19:50:00.115661Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/public/vercel.svg"
+2026-04-21T19:50:00.115804Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/next.config.ts"
+2026-04-21T19:50:00.115939Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/tsconfig.json"
+2026-04-21T19:50:00.115199Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/eslint.config.mjs"
+2026-04-21T19:50:00.116072Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/postcss.config.mjs"
+2026-04-21T19:50:00.116090Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/package.json"
+2026-04-21T19:50:00.115973Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/README.md"
+2026-04-21T19:50:00.115050Z  INFO tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/public/globe.svg"
+2026-04-21T19:50:00.117239Z  INFO discover_sources: tailwindcss_oxide::scanner: exit
+2026-04-21T19:50:00.117498Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.117673Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.117834Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.119947Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2026-04-21T19:50:00.120095Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2026-04-21T19:50:00.120166Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.120239Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2026-04-21T19:50:00.120340Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "/home/rohan/pdf/app/globals.css"
+2026-04-21T19:50:00.120412Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2026-04-21T19:50:00.120483Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.120553Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.120871Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: exit
+2026-04-21T19:50:00.120975Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: exit
+2026-04-21T19:50:00.121264Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2026-04-21T19:50:00.123171Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.123403Z  INFO get_files:discover_sources: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.123552Z  INFO get_files:discover_sources: tailwindcss_oxide::scanner: exit
+2026-04-21T19:50:00.123769Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2026-04-21T19:50:00.124120Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.124326Z  INFO get_globs:discover_sources: tailwindcss_oxide::scanner: enter
+2026-04-21T19:50:00.124479Z  INFO get_globs:discover_sources: tailwindcss_oxide::scanner: exit
+2026-04-21T19:50:00.126240Z  INFO get_globs: tailwindcss_oxide::scanner: exit
