@@ -40,7 +40,7 @@ export default function StudyPage() {
     const q = currentList[qIndex];
     if (!q || !deck) return [];
     if (mode === 'mcq' && 'options' in q) return Array.isArray(q.options) ? q.options : [];
-    const correct = q.answer || q.text || "";
+    const correct = q.answer || "";
     const others = (Array.isArray(deck.definitions) ? deck.definitions.map((d: any) => d.term) : []).concat(deck.topics || []);
     const decoys = others.filter(o => o !== correct).sort(() => 0.5 - Math.random()).slice(0, 3);
     return [correct, ...decoys].sort();
