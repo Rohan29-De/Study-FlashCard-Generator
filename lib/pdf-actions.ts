@@ -1,14 +1,9 @@
 'use server';
 
-import { PDFParse } from 'pdf-parse';
 import { generateFlashcards } from './groq';
 import { groq } from './groq';
 import { Flashcard, Deck } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
-import path from 'path';
-
-// Fix for worker path in Next.js environment
-// Server action timeout is configured in next.config.ts (maxDuration: 60)
 
 export async function processPdf(formData: FormData): Promise<Deck | null> {
   const file = formData.get('file') as File;
@@ -17,8 +12,11 @@ export async function processPdf(formData: FormData): Promise<Deck | null> {
   try {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    const parser = new PDFParse({ data: buffer });
-    const data = await parser.getText();
+    
+      // Pattern from user:
+    const pdfParse = require('pdf-parse');
+    const data = await pdfParse(buffer);
+
     
     // Talk to the Teacher AI
     const kit = await generateFlashcards(data.text);
