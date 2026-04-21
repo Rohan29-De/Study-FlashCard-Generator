@@ -14,7 +14,7 @@ export async function processPdf(formData: FormData): Promise<Deck | null> {
     const buffer = Buffer.from(arrayBuffer);
     
       // Pattern from user:
-    const pdfParse = require('pdf-parse/lib/pdf-parse.js');
+const pdfParse = require('pdf-parse/dist/pdf-parse');
 const data = await pdfParse(buffer);
 
     
