@@ -1,178 +1,198 @@
-# PDF Study Assistant
+# 📚 PDF Study Assistant
 
-An AI-powered PDF processing and study application built with Next.js, TypeScript, and Groq AI. Transform PDF documents into interactive flashcards, multiple-choice questions, fill-in-the-blanks, concepts, and definitions for efficient learning.
+> Transform any PDF into a complete, interactive study toolkit — powered by Groq AI and spaced repetition science.
+---
+
+## What It Does
+
+Upload any PDF — a textbook chapter, lecture notes, research paper — and the app instantly generates a full set of study materials: flashcards with spaced repetition, multiple-choice quizzes, fill-in-the-blank exercises, key concepts, and definitions. Everything you need to actually learn the material, not just skim it.
+
+---
 
 ## Features
 
-### 📚 Study Modes
-- **Flashcards**: Spaced repetition learning with SM-2 algorithm
-- **Multiple Choice Questions (MCQs)**: Test knowledge with AI-generated questions
-- **Fill-in-the-Blanks**: Interactive sentence completion exercises
-- **Concepts**: Key ideas and topics from the document
-- **Progress Tracking**: Visual progress bars and mastery levels
+### 🃏 Study Modes
+- **Flashcards** — Flip-card interface with SM-2 spaced repetition scheduling
+- **Multiple Choice (MCQs)** — AI-generated questions with instant feedback
+- **Fill in the Blanks** — Sentence completion exercises for active recall
+- **Concepts & Definitions** — Key terms extracted and explained from your document
 
-### 🤖 AI-Powered Processing
-- **Intelligent PDF Parsing**: Extracts text content from PDF files
-- **Content Generation**: Uses Groq AI to create comprehensive study materials
-- **Smart Summarization**: Generates concise summaries of documents
-- **Adaptive Learning**: AI-generated content tailored to document content
+### 🤖 AI Processing
+- Intelligent PDF text extraction via `pdf-parse`
+- Groq AI (Llama 3.3) generates comprehensive, high-quality study content
+- Auto-generated document summary and key topics
+- Content adapts to the subject matter of your document
 
-### 🎨 Modern UI/UX
-- **Responsive Design**: Works on desktop and mobile devices
-- **Smooth Animations**: Framer Motion for delightful interactions
-- **Tailwind CSS**: Modern, utility-first styling
-- **Accessible**: Built with accessibility in mind
+### 📈 Progress & Learning
+- SM-2 spaced repetition algorithm — hard cards come back sooner, easy cards fade
+- Visual progress bars and mastery level tracking
+- Study session history stored locally — pick up where you left off
+
+### 🎨 UI/UX
+- Responsive design — works on desktop and mobile
+- Smooth animations via Framer Motion
+- Clean, distraction-free study interface
+
+---
 
 ## Tech Stack
 
-- **Frontend**: Next.js 16, React 19, TypeScript
-- **Styling**: Tailwind CSS v4, PostCSS
-- **Animations**: Framer Motion
-- **AI**: Groq SDK (Llama 3.3 model)
-- **PDF Processing**: pdf-parse library
-- **Icons**: Lucide React
-- **State Management**: React hooks with localStorage persistence
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript 5 |
+| Styling | Tailwind CSS v4 + PostCSS |
+| Animations | Framer Motion |
+| AI Provider | Groq SDK — Llama 3.3 70B |
+| PDF Parsing | pdf-parse |
+| Icons | Lucide React |
+| State / Storage | React hooks + localStorage |
+
+---
 
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 18+
-- npm or yarn
-- Groq API key
+- A free [Groq API key](https://console.groq.com)
 
 ### Installation
 
-1. Clone the repository:
 ```bash
-git clone <repository-url>
+# 1. Clone the repo
+git clone <your-repo-url>
 cd pdf-study-assistant
-```
 
-2. Install dependencies:
-```bash
+# 2. Install dependencies
 npm install
-```
 
-3. Create environment file:
-```bash
+# 3. Set up environment variables
 cp .env.local.example .env.local
 ```
 
-4. Add your Groq API key to `.env.local`:
+Open `.env.local` and add your key:
+
 ```env
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
-### Development
+### Running Locally
 
-Run the development server:
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Visit [http://localhost:3000](http://localhost:3000).
 
-### Building for Production
+### Production Build
 
 ```bash
 npm run build
 npm start
 ```
 
+---
+
 ## Project Structure
 
 ```
-├── app/                    # Next.js app directory
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Home page
-│   ├── globals.css        # Global styles
-│   └── decks/             # Dynamic deck routes
-│       └── [id]/
-│           └── study/
-│               └── page.tsx
-├── components/            # Reusable React components
-│   ├── DeckCard.tsx       # Deck display card
-│   ├── Flashcard.tsx      # Flashcard component
-│   ├── ProgressBar.tsx    # Progress visualization
-│   ├── UploadZone.tsx     # File upload interface
+├── app/
+│   ├── layout.tsx              # Root layout
+│   ├── page.tsx                # Dashboard / home
+│   ├── globals.css             # Global styles
+│   └── decks/[id]/study/
+│       └── page.tsx            # Study session page
+│
+├── components/
+│   ├── DeckCard.tsx            # Deck tile on dashboard
+│   ├── Flashcard.tsx           # Flip card component
+│   ├── ProgressBar.tsx         # Mastery progress indicator
+│   ├── UploadZone.tsx          # PDF drag-and-drop upload
 │   └── ...
-├── hooks/                 # Custom React hooks
-│   └── useDecks.ts        # Deck management hook
-├── lib/                   # Utility libraries
-│   ├── groq.ts            # AI integration
-│   ├── pdf-actions.ts     # PDF processing
-│   └── sm2.ts             # Spaced repetition algorithm
-├── types/                 # TypeScript type definitions
-│   └── index.ts           # Main type exports
-└── public/                # Static assets
+│
+├── hooks/
+│   └── useDecks.ts             # Deck CRUD + localStorage sync
+│
+├── lib/
+│   ├── groq.ts                 # Groq AI client + prompt logic
+│   ├── pdf-actions.ts          # PDF parsing server actions
+│   └── sm2.ts                  # SM-2 spaced repetition algorithm
+│
+└── types/
+    └── index.ts                # Shared TypeScript interfaces
 ```
 
-## API Usage
+---
 
-### PDF Processing
-The app uses Groq AI to process uploaded PDFs and generate:
-- Document summary
-- Key topics
-- Flashcards (questions/answers/explanations)
-- Multiple choice questions
-- Fill-in-the-blank exercises
-- Key concepts
-- Definitions
+## How the AI Works
 
-### Spaced Repetition
-Implements the SM-2 algorithm for optimal flashcard scheduling based on user performance.
+When you upload a PDF, the app:
 
-## Configuration
+1. **Parses** the file server-side using `pdf-parse` and extracts raw text
+2. **Sends** the text to Groq (Llama 3.3 70B) with a structured prompt
+3. **Receives** a JSON payload containing:
+   - Document summary
+   - Key topics
+   - Flashcard question/answer pairs with explanations
+   - Multiple choice questions with distractors
+   - Fill-in-the-blank sentences
+   - Core concepts and definitions
 
-### Environment Variables
-- `GROQ_API_KEY`: Your Groq API key for AI processing
+All generation happens in a single API call to keep latency low.
 
-### Customization
-- Modify AI prompts in `lib/groq.ts` and `lib/pdf-actions.ts`
-- Adjust styling in Tailwind CSS classes
-- Configure SM-2 parameters in `lib/sm2.ts`
+---
+
+## Spaced Repetition (SM-2)
+
+Flashcard scheduling uses the SM-2 algorithm. After each card review you rate your recall:
+
+| Rating | Meaning |
+|---|---|
+| 0–1 | Forgot completely |
+| 2 | Hard — remembered with difficulty |
+| 3 | Good — correct with some effort |
+| 4–5 | Easy / perfect recall |
+
+Cards with low ratings reappear within 1–2 days. Well-known cards are pushed further out (weeks, then months). The algorithm adjusts each card's ease factor independently over time.
+
+---
+
+## Environment Variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `GROQ_API_KEY` | Yes | Your Groq API key from [console.groq.com](https://console.groq.com) |
+
+---
+
+## Security
+
+- The Groq API key is used server-side only (Next.js API routes / Server Actions)
+- No keys are ever exposed to the browser or bundled into client JS
+- All user data stays local — nothing is sent to any server except your PDF text to Groq for processing
+
+---
+
+## Roadmap
+
+- [ ] Deck export (Anki `.apkg` format)
+- [ ] Image and diagram support in PDFs
+- [ ] Collaborative decks (share a link)
+- [ ] Study streaks and gamification
+- [ ] Dark mode
+
+---
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
+1. Fork the repo and create a feature branch
+2. Make your changes
+3. Run `npm run lint` and `npm run build` to verify
+4. Open a pull request with a clear description
+
+---
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- [Next.js](https://nextjs.org/) for the React framework
-- [Groq](https://groq.com/) for AI processing
-- [Tailwind CSS](https://tailwindcss.com/) for styling
-- [Framer Motion](https://www.framer.com/motion/) for animations
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT — see [LICENSE](./LICENSE) for details.
